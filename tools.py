@@ -52,3 +52,8 @@ def possui_movimentos_possiveis(baralho:list) -> bool:
             return True
 
     return False
+
+
+def mostra_baralho(baralho:list):
+    for carta in baralho:
+        print(str(baralho.index(carta) + 1) + ". " + carta) 
