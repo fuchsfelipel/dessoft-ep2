@@ -1,3 +1,5 @@
+import random
+
 def cria_baralho():
     naipes = ["♠", "♥", "♦", "♣"]
     letras = [str(x + 2) for x in range(9)]
@@ -9,6 +11,8 @@ def cria_baralho():
     for letra in letras:
         for naipe in naipes:
             cartas.append(letra + naipe)
+
+    random.shuffle(cartas)
 
     return(cartas)
 
