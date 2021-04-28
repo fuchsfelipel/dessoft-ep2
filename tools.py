@@ -36,11 +36,19 @@ def lista_movimentos_possiveis(baralho:list, index:int) -> list:
     movimentos = []
 
     if (index!= 0 and (naipes[index] == naipes[index - 1] or valores[index] == valores[index - 1])):
-        movimentos.Append(1)
+        movimentos.append(1)
     
     if (index >= 3 and (naipes[index] == naipes[index - 3] or valores[index] == valores[index - 3])):
-        movimentos.Append(3)
+        movimentos.append(3)
     
     return movimentos
 
+def possui_movimentos_possiveis(baralho:list) -> bool:
+    for i in range(len(baralho)):
+        print(i)
+        print(lista_movimentos_possiveis(baralho, i))
+        
+        if lista_movimentos_possiveis(baralho, i):
+            return True
 
+    return False
