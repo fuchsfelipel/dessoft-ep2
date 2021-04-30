@@ -57,7 +57,27 @@ def possui_movimentos_possiveis(baralho:list) -> bool:
 
     return False
 
+# Cores do Baralho
+# https://stackoverflow.com/questions/287871/how-to-print-colored-text-to-the-terminal
+class cores:
+    CIANO = '\033[96m'
+    VERDE = '\033[92m'
+    AMARELO = '\033[93m'
+    VERMELHO = '\033[91m'
+    END = '\033[0m'
+
 
 def mostra_baralho(baralho:list):
     for carta in baralho:
-        print(str(baralho.index(carta) + 1) + ". " + carta) 
+        cor = cores.CIANO
+
+        if (extrai_naipe(carta) == "♥"):
+            cor = cores.VERMELHO
+        
+        elif (extrai_naipe(carta) == "♦"):
+            cor = cores.AMARELO
+        
+        elif (extrai_naipe(carta) == "♣"):
+            cor = cores.VERDE
+
+        print(cor +  str(baralho.index(carta) + 1) + ". " + carta + cores.END) 
