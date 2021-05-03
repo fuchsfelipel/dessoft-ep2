@@ -51,10 +51,7 @@ def possui_movimentos_possiveis(baralho:list) -> bool:
     if(len(baralho) == 1):
         return False
     
-    for i in range(len(baralho)):
-        print(i)
-        print(lista_movimentos_possiveis(baralho, i))
-        
+    for i in range(len(baralho)):     
         if lista_movimentos_possiveis(baralho, i):
             return True
 
