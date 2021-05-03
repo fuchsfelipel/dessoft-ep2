@@ -11,16 +11,18 @@ baralho = cria_baralho()
 
 # Vamos começar o jogo
 while True:
-    print("Status atual do jogo:\n--------\n")    
-    print(mostra_baralho(baralho))
-
-    
-    index = faz_pergunta_index(f"Digite a carta que deseja mover (1 - {len(baralho)})", len(baralho))
-
-
     # O jogo deve continuar?
     existe_movimentos = possui_movimentos_possiveis(baralho)
     if (existe_movimentos):
+
+        print("Status atual do jogo:\n--------\n")    
+        print(mostra_baralho(baralho))
+
+        
+        index = faz_pergunta_index(f"Digite a carta que deseja mover (1 - {len(baralho)})", len(baralho))
+
+
+        
         movimentos = lista_movimentos_possiveis(baralho, index)
         if (not movimentos):
             print("Nenhum movimento é possível com esta carta. Tente novamete:")
@@ -29,9 +31,10 @@ while True:
             time.sleep(3)
         
         else:
-            print("Você pode embilhar a carta sobre:")
+            print("Você pode empilhar a carta sobre:")
             _cartasMovimento = [baralho[index - x] for x in movimentos]
             mostra_baralho(_cartasMovimento)
+
             destino = faz_pergunta_index(f"Digite a carta sobre a qual você deseja empilhar {baralho[index]}:\n", len(baralho))
             baralho = empilha(baralho, index, baralho.index(_cartasMovimento[destino]))
 
