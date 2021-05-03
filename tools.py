@@ -1,3 +1,5 @@
+import random
+
 def cria_baralho():
     naipes = ["♠", "♥", "♦", "♣"]
     letras = [str(x + 2) for x in range(9)]
@@ -9,6 +11,8 @@ def cria_baralho():
     for letra in letras:
         for naipe in naipes:
             cartas.append(letra + naipe)
+
+    random.shuffle(cartas)
 
     return(cartas)
 
@@ -44,11 +48,46 @@ def lista_movimentos_possiveis(baralho:list, index:int) -> list:
     return movimentos
 
 def possui_movimentos_possiveis(baralho:list) -> bool:
-    for i in range(len(baralho)):
-        print(i)
-        print(lista_movimentos_possiveis(baralho, i))
-        
+    if(len(baralho) == 1):
+        return False
+    
+    for i in range(len(baralho)):     
         if lista_movimentos_possiveis(baralho, i):
             return True
 
     return False
+
+# Cores do Baralho
+# https://stackoverflow.com/questions/287871/how-to-print-colored-text-to-the-terminal
+class cores:
+    CIANO = '\033[96m'
+    VERDE = '\033[92m'
+    AMARELO = '\033[93m'
+    VERMELHO = '\033[91m'
+    END = '\033[0m'
+
+
+def mostra_baralho(baralho:list):
+    for carta in baralho:
+        cor = cores.CIANO
+
+        if (extrai_naipe(carta) == "♥"):
+            cor = cores.VERMELHO
+        
+        elif (extrai_naipe(carta) == "♦"):
+            cor = cores.AMARELO
+        
+        elif (extrai_naipe(carta) == "♣"):
+            cor = cores.VERDE
+
+        print(cor +  str(baralho.index(carta) + 1) + ". " + carta + cores.END) 
+
+    # Remove o "None" do print
+    return ""
+
+def faz_pergunta_index(mensagem, validacao):
+    resposta = int(input(mensagem))
+    while (not resposta <= validacao):
+        resposta = int(input("Input inválido. "+ mensagem))
+
+    return (resposta - 1)
