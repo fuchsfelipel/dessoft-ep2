@@ -81,3 +81,29 @@ def mostra_baralho(baralho:list):
             cor = cores.VERDE
 
         print(cor +  str(baralho.index(carta) + 1) + ". " + carta + cores.END) 
+
+def fazJogada(baralho, index:int):
+    # Existe algum movimento?
+    if (not possui_movimentos_possiveis(baralho)):
+        return [False, baralho]
+    
+    movimentos = lista_movimentos_possiveis(baralho, index)
+    print(f"Sobre qual carta você quer empilhar o {baralho[index]}? \n {mostra_baralho(movimentos)}")
+
+    # Qual carta você quer empilhar?
+    # Esta linha pega o índice da carta no baralho
+    destino = baralho.index(movimentos[int(input(f"Digite a carta que deseja mover (1 - {len(movimentos)})")) - 1])
+    
+    # Mudar baralho
+    baralho = empilha(baralho, index, destino)
+
+    # Ganhou?
+    if (not possui_movimentos_possiveis(baralho) and len(baralho) == 1):
+        print("Parabéns, você venceu!")
+        return[False, baralho]
+
+    elif (not possui_movimentos_possiveis(baralho)):
+        print("Você perdeu! Agora a skynet vai dominar o seu PC.")
+        return[False, baralho]
+
+    return [True, baralho]
