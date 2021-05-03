@@ -82,7 +82,10 @@ def mostra_baralho(baralho:list):
 
         print(cor +  str(baralho.index(carta) + 1) + ". " + carta + cores.END) 
 
-def fazJogada(baralho, index:int):
+    # Remove o "None" do print
+    return ""
+
+def fazJogada(baralho:list, index:int):
     # Existe algum movimento?
     if (not possui_movimentos_possiveis(baralho)):
         return [False, baralho]

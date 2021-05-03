@@ -17,9 +17,10 @@ def jogar():
     print("Status atual do jogo:\n--------\n")
     print(mostra_baralho(baralho))
 
+    baralho_atual = baralho
     while statusJogo:
         index = int(input(f"Digite a carta que deseja mover (1 - {len(baralho)})")) - 1
-        statusJogo, baralho = fazJogada(index, baralho)
+        statusJogo, baralho_atual = fazJogada(baralho_atual, index)
 
 # Jogar
 while True:
