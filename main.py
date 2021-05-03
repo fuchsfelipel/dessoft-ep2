@@ -14,10 +14,13 @@ while True:
     print("Status atual do jogo:\n--------\n")    
     print(mostra_baralho(baralho))
 
-    index = int(input(f"Digite a carta que deseja mover (1 - {len(baralho)})")) - 1
+    
+    index = faz_pergunta_index(f"Digite a carta que deseja mover (1 - {len(baralho)})", len(baralho))
+
 
     # O jogo deve continuar?
-    if (possui_movimentos_possiveis(baralho)):
+    existe_movimentos = possui_movimentos_possiveis(baralho)
+    if (existe_movimentos):
         movimentos = lista_movimentos_possiveis(baralho, index)
         if (not movimentos):
             print("Nenhum movimento é possível com esta carta. Tente novamete:")
@@ -29,7 +32,7 @@ while True:
             print("Você pode embilhar a carta sobre:")
             _cartasMovimento = [baralho[index - x] for x in movimentos]
             mostra_baralho(_cartasMovimento)
-            destino = int(input(f"Digite a carta sobre a qual você deseja empilhar {baralho[index]}:\n")) - 1
+            destino = faz_pergunta_index(f"Digite a carta sobre a qual você deseja empilhar {baralho[index]}:\n", len(baralho))
             baralho = empilha(baralho, index, baralho.index(_cartasMovimento[destino]))
 
     else:
@@ -39,7 +42,12 @@ while True:
         else:
             print("Você perdeu. Agora a skynet vai dominar o seu PC.")
         
-        if (input("Você gostaria de jogar novamente (s/n)?") == "n"):
+        
+        continuar = input("Você gostaria de jogar novamente (s/n)?")
+        while (continuar not in ["s", "n"]):
+            continuar = input("Digite s ou n?")
+
+        if (continuar == 'n'):
             break
     
         else:

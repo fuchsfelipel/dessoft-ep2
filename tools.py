@@ -48,6 +48,9 @@ def lista_movimentos_possiveis(baralho:list, index:int) -> list:
     return movimentos
 
 def possui_movimentos_possiveis(baralho:list) -> bool:
+    if(len(baralho) == 1):
+        return False
+    
     for i in range(len(baralho)):
         print(i)
         print(lista_movimentos_possiveis(baralho, i))
@@ -84,3 +87,10 @@ def mostra_baralho(baralho:list):
 
     # Remove o "None" do print
     return ""
+
+def faz_pergunta_index(mensagem, validacao):
+    resposta = int(input(mensagem))
+    while (not resposta <= validacao):
+        resposta = int(input("Input inválido. "+ mensagem))
+
+    return (resposta - 1)
