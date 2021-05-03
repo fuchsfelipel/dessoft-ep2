@@ -6,14 +6,10 @@ with open("message.txt", 'r') as f:
 
 input("\nAperte [Enter] para iniciar o jogo...\n")
 
-# Define uma jogada
-"Você gostaria de jogar novamente (s/n)?"
-
-
-
 # Gerar e Mostrar Baralho
 baralho = cria_baralho()
 
+# Vamos começar o jogo
 while True:
     print("Status atual do jogo:\n--------\n")    
     print(mostra_baralho(baralho))
